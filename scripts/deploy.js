@@ -1,14 +1,11 @@
 const hre = require("hardhat");
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
-
-  const ContractFactory = await hre.ethers.getContractFactory("ZunXBT");
-  const contract = await ContractFactory.deploy(deployer.address);
+  const contract = await hre.ethers.deployContract("TestToken");
 
   await contract.waitForDeployment();
 
-  console.log(`Your NFT Contract Address: ${contract.target}`);
+  console.log(`Contract address : ${contract.target}`);
 }
 
 main().catch((error) => {
